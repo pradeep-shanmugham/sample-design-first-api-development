@@ -1,10 +1,7 @@
-**/node_modules/**
-.vscode
-user-interface/build
-.vs/design-first/config
-.vs/design-first/v16
-user-interface/.vs/user-interface/DesignTimeBuild
-user-interface/.vs/user-interface/v16
-user-interface/bin
-user-interface/obj
-user-interface/wwwroot/.archive
+**/.vscode/**
+**/build/**
+**/.vs/**
+**/.vs/**
+**/bin/**
+**/obj/**
+**/.archive/**
