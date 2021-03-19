@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0057)https://colorlib.com/etc/tb/Table_Fixed_Header/index.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>@ViewData["Title"] - user_interface</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="https://colorlib.com/etc/tb/Table_Fixed_Header/images/icons/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="./resources/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="./resources/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="./resources/animate.css">
+
+    <link rel="stylesheet" type="text/css" href="./resources/select2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="./resources/perfect-scrollbar.css">
+
+    <link rel="stylesheet" type="text/css" href="./resources/util.css">
+    <link rel="stylesheet" type="text/css" href="./resources/main.css">
+
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./resources/jquery-3.2.1.min.js"></script>
+
+    <script src="./resources/popper.js"></script>
+    <script src="./resources/bootstrap.min.js"></script>
+
+    <script src="./resources/select2.min.js"></script>
+
+    <script src="./resources/perfect-scrollbar.min.js"></script>
+    <script>
+        $('.js-pscroll').each(function () {
+            var ps = new PerfectScrollbar(this);
+
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });
+
+
+    </script>
+
+    <script src="./resources/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

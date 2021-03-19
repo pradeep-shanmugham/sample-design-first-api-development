@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: Insurance API
+  version: '1.0'
+  contact:
+    name: Pradeep Shanmugham
+    email: pradeep.shanmugham@domain.com
+  license:
+    name: GNU Public License
+  description: An API for Listing out Insurance Product
+servers:
+  - url: 'https://localhost:44357'
+    description: LOCALHOST
+  - url: 'http://127.0.0.1:4010'
+    description: VALIDATOR
+paths:
+  /products:
+    parameters: []
+    get:
+      summary: Get Insurance Products
+      tags:
+        - insurance-products
+      responses:
+        '200':
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              examples:
+                example-1:
+                  value:
+                    - id: 1
+                      provider: ABCD
+                      type: Comprehensive Car Insurance
+                      maxSumInsurable: 500000
+                      monthlyPremium: 400
+                      gst: 10
+                    - id: 2
+                      provider: EFGH
+                      type: Compulsary Third Party Insurance
+                      maxSumInsurable: 5000
+                      monthlyPremium: 50
+                      gst: 20
+                    - id: 3
+                      provider: HIJK
+                      type: Life Insurance
+                      maxSumInsurable: 500000
+                      monthlyPremium: 5000
+                      gst: 20
+      operationId: get-users-userId
+      description: Get all available insurance products with their basic information
+      parameters: []
+components:
+  schemas:
+    Product:
+      description: A insurance product
+      type: object
+      title: Insurance Product
+      x-examples:
+        example-1:
+          id: 1
+          provider: ABCD
+          type: Comprehensive Car Insurance
+          maxSumInsurable: 500000
+          monthlyPremium: 400
+          gst: 10
+      properties:
+        id:
+          type: number
+          multipleOf: 1
+          minimum: 1
+          example: 1
+        provider:
+          type: string
+          maxLength: 10
+          pattern: '[A-Za-z\s]+'
+          example: Sample
+          minLength: 2
+        type:
+          type: string
+          minLength: 2
+          pattern: '[A-Za-z\s]+'
+          example: Comprehensive Car Insurance
+          maxLength: 100
+        maxSumInsurable:
+          type: number
+          minimum: 1
+          example: 50000
+        monthlyPremium:
+          type: number
+          minimum: 1
+          example: 100
+        gst:
+          type: number
+          minimum: 0
+          example: 100
+      required:
+        - id
+        - provider
+        - type
+        - maxSumInsurable
+        - monthlyPremium
+        - gst
+tags:
+  - name: insurance-products
