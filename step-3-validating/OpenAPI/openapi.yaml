@@ -11,8 +11,10 @@ info:
 servers:
   - url: 'https://localhost:44357'
     description: LOCALHOST
-  - url: 'http://127.0.0.1:4010'
-    description: VALIDATOR
+  - url: 'https://api.staging.mydomain.com'
+    description: PRE-PRODUCTION
+  - url: 'https://api.mydomain.com'
+    description: PRODUCTION
 paths:
   /products:
     parameters: []
@@ -40,16 +42,27 @@ paths:
                       gst: 10
                     - id: 2
                       provider: EFGH
-                      type: Compulsary Third Party Insurance
+                      type: CTP
                       maxSumInsurable: 5000
                       monthlyPremium: 50
                       gst: 20
                     - id: 3
                       provider: HIJK
-                      type: Life Insurance
+                      type: Third Party
                       maxSumInsurable: 500000
                       monthlyPremium: 5000
                       gst: 20
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '500':
+          description: Internal Server Error
+        '503':
+          description: Service Unavailable
       operationId: get-users-userId
       description: Get all available insurance products with their basic information
       parameters: []
@@ -82,9 +95,12 @@ components:
         type:
           type: string
           minLength: 2
-          pattern: '[A-Za-z\s]+'
           example: Comprehensive Car Insurance
           maxLength: 100
+          enum:
+            - Comprehensive Car Insurance
+            - Third Party
+            - CTP
         maxSumInsurable:
           type: number
           minimum: 1
@@ -104,5 +120,11 @@ components:
         - maxSumInsurable
         - monthlyPremium
         - gst
+  securitySchemes:
+    api-key:
+      name: api-key
+      type: apiKey
+      in: header
+      description: The key that needs to be used when invoking the service
 tags:
   - name: insurance-products

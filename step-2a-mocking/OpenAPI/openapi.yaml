@@ -42,13 +42,13 @@ paths:
                       gst: 10
                     - id: 2
                       provider: EFGH
-                      type: Compulsary Third Party Insurance
+                      type: CTP
                       maxSumInsurable: 5000
                       monthlyPremium: 50
                       gst: 20
                     - id: 3
                       provider: HIJK
-                      type: Life Insurance
+                      type: Third Party
                       maxSumInsurable: 500000
                       monthlyPremium: 5000
                       gst: 20
@@ -95,9 +95,12 @@ components:
         type:
           type: string
           minLength: 2
-          pattern: '[A-Za-z\s]+'
           example: Comprehensive Car Insurance
           maxLength: 100
+          enum:
+            - Comprehensive Car Insurance
+            - Third Party
+            - CTP
         maxSumInsurable:
           type: number
           minimum: 1
